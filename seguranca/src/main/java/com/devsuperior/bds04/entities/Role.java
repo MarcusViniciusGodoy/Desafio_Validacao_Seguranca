@@ -1,7 +1,5 @@
 package com.devsuperior.bds04.entities;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
