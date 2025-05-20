@@ -27,19 +27,21 @@ public class CityResource {
     @Autowired
     private CityService service;
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping
     public ResponseEntity<Page<CityDTO>> findAll(Pageable pageable){
         Page<CityDTO> list = service.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
     } 
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<CityDTO> findById(@PathVariable Long id){
         CityDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     } 
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<CityDTO> insert(@RequestBody CityDTO dto){
         dto = service.insert(dto);
@@ -48,14 +50,14 @@ public class CityResource {
         return ResponseEntity.created(uri).body(dto);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<CityDTO> update(@PathVariable Long id, @RequestBody CityDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);

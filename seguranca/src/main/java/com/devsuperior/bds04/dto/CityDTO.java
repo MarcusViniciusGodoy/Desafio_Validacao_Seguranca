@@ -8,10 +8,14 @@ import java.util.Set;
 import com.devsuperior.bds04.entities.City;
 import com.devsuperior.bds04.entities.Event;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CityDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+
+	@NotBlank(message = "Campo obrigatório")
 	private String name;
 
 	private List<EventDTO> events = new ArrayList<>();
