@@ -3,12 +3,10 @@ package com.devsuperior.bds04.services.validation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.devsuperior.bds04.dto.UserInsertDTO;
 import com.devsuperior.bds04.dto.UserUpdateDTO;
 import com.devsuperior.bds04.entities.User;
 import com.devsuperior.bds04.repositories.UserRepository;
