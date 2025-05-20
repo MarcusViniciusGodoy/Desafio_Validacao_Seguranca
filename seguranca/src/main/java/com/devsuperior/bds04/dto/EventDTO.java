@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import com.devsuperior.bds04.entities.Event;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 public class EventDTO implements Serializable {
@@ -20,7 +21,7 @@ public class EventDTO implements Serializable {
 	private LocalDate date;
 	private String url;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotNull(message = "Campo requerido")
 	private Long cityId;
 	
 	public EventDTO() {
