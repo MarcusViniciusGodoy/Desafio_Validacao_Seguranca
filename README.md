@@ -10,6 +10,9 @@ Este projeto possui uma estrutura de dados baseada no diagrama UML abaixo, que r
 ## UML Validação
 ![Validacao](https://github.com/MarcusViniciusGodoy/assets/blob/main/Validacao.PNG)
 
+## Testes segurança
+![testes](https://github.com/MarcusViniciusGodoy/assets/blob/main/testeSeguranca.PNG)
+
 ## 📊 Entidades e Relacionamentos
 - User: Representa os usuários do sistema. Cada usuário possui um e-mail, senha e pode ter múltiplos papéis (roles) associados.
 
