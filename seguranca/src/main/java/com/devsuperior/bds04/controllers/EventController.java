@@ -1,12 +1,9 @@
 package com.devsuperior.bds04.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,21 +24,20 @@ public class EventController {
 
     @Autowired
 	private EventService service;
-	
+
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
 	@GetMapping
-	public ResponseEntity<Page<EventDTO>> findAll(Pageable pageable) {
-		PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("name"));
-		Page<EventDTO> list = service.findAll(pageRequest);		
+	public ResponseEntity<List<EventDTO>> findAll() {
+		List<EventDTO> list = service.findAll();		
 		return ResponseEntity.ok().body(list);
 	}
-	
+
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping
 	public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventDTO dto) {
-		dto = service.insert(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.created(uri).body(dto);
+    	dto = service.insert(dto);
+    	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        	.buildAndExpand(dto.getId()).toUri();
+    	return ResponseEntity.created(uri).body(dto);
 	}
 }
