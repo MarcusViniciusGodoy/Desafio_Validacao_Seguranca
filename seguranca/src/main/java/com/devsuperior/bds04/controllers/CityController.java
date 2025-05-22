@@ -25,7 +25,6 @@ public class CityController {
     @Autowired
 	private CityService service;
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
 	@GetMapping
 	public ResponseEntity<List<CityDTO>> findAll() {
 		List<CityDTO> list = service.findAll();		

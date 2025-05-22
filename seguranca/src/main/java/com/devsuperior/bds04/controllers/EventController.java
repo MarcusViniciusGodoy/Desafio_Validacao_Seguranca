@@ -1,9 +1,10 @@
 package com.devsuperior.bds04.controllers;
 
 import java.net.URI;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,14 +26,13 @@ public class EventController {
     @Autowired
 	private EventService service;
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
 	@GetMapping
-	public ResponseEntity<List<EventDTO>> findAll() {
-		List<EventDTO> list = service.findAll();		
-		return ResponseEntity.ok().body(list);
+	public ResponseEntity<Page<EventDTO>> findAll(Pageable pageable) {
+    	Page<EventDTO> page = service.findAllPaged(pageable);
+    	return ResponseEntity.ok().body(page);
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
 	@PostMapping
 	public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventDTO dto) {
     	dto = service.insert(dto);
