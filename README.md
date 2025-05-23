@@ -58,7 +58,7 @@ Este projeto possui uma estrutura de dados baseada no diagrama UML abaixo, que r
 - Spring Boot
 
 ## Testes 
-- JUnit5
+- JUnit 5
 
 # Autor
 Marcus Vinícius de Godoy 
